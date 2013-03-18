@@ -13,6 +13,13 @@ namespace MongoTwitterApp.Models
         string userID;
         string name;
         DateTime createdDate;
+        string iD;
+        
+        public string ID
+        {
+            get { return iD; }
+            set { iD = value; }
+        }
 
         public DateTime CreatedDate
         {

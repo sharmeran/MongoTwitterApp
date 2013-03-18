@@ -131,16 +131,20 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="BusinessDomain\TwitterDomain.cs" />
     <Compile Include="Constants\CommonConstants.cs" />
+    <Compile Include="Constants\TwitterConstants.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\TwitterController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="DataAccess\TwitterRepository.cs" />
     <Compile Include="Enums\ActionStateEnum.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\ActionState.cs" />
     <Compile Include="Models\TwitterEntity.cs" />
+    <Compile Include="Models\UserStatistics.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -239,14 +243,16 @@
     <Content Include="Scripts\_references.js" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\GetTweets.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\AddTweets.cshtml" />
+    <Content Include="Views\Home\GetAllStatistics.cshtml" />
+    <Content Include="Views\Home\GetLastMonthStatistics.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="BusinessDomain\" />
-    <Folder Include="DataAccess\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

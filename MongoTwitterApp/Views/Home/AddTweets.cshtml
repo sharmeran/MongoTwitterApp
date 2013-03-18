@@ -1,0 +1,27 @@
+﻿@model MongoTwitterApp.Models.TwitterEntity
+
+@{
+    ViewBag.Title = "AddTweets";
+}
+
+@{
+    var actionState = ViewBag.ActionState;
+}
+
+
+@if (actionState != null)
+{
+    <div>
+        @if (actionState.Result != "")
+        {
+            <h3 style="color: red;">@actionState.Result</h3>
+        }
+        else
+        {
+            <h3 style="color: green;">Added Successfully</h3>
+        }
+
+    </div>
+}   
+ @Html.ActionLink("Home", "Index", "Home")
+<h2>AddTweets</h2>

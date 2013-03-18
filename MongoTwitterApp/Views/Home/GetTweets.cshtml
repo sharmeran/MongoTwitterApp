@@ -1,0 +1,74 @@
+﻿@model IEnumerable<MongoTwitterApp.Models.TwitterEntity>
+
+@{
+    var actionState = ViewBag.ActionState;
+}
+
+<h2>GetTweets</h2>
+@if (actionState != null)
+{
+    <div>
+        @if (actionState.Result != "")
+        {
+            <h3 style="color: red;">@actionState.Result</h3>
+        }
+
+    </div>
+}
+
+
+
+<div>
+    <p>
+        |
+        @Html.ActionLink("Add Tweets To DB", "AddTweets", "Home", Model)
+    </p>
+</div>
+
+<table>
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.CreatedDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tweet)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ScreenName)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tweet)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ScreenName)
+            </td>
+
+        </tr>
+    }
+
+</table>
+
+

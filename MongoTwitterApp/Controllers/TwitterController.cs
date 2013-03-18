@@ -6,6 +6,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using LinqToTwitter;
+using MongoTwitterApp.BusinessDomain;
 using MongoTwitterApp.Constants;
 using MongoTwitterApp.Models;
 
@@ -14,51 +15,30 @@ namespace MongoTwitterApp.Controllers
     public class TwitterController : ApiController
     {
 
-
-        public void GetTwitter()
+        public List<TwitterEntity> GetTweets(ActionState actionState)
         {
-
-            try
-            {
-
-                var mvcAuthorizer = new MvcAuthorizer
-                {
-                    Credentials = new InMemoryCredentials
-                    {
-                        ConsumerKey = ConfigurationManager.AppSettings[CommonConstants.ConsumerKey],
-                        ConsumerSecret = ConfigurationManager.AppSettings[CommonConstants.ConsumerSecret],
-                        AccessToken = ConfigurationManager.AppSettings[CommonConstants.AccessToken],
-                        OAuthToken = ConfigurationManager.AppSettings[CommonConstants.OAuthToken],
-                        ScreenName = ConfigurationManager.AppSettings[CommonConstants.ScreenName]
-                    }
-                };
-                var twitterCtx = new TwitterContext(mvcAuthorizer);
-                var friendTweets =
-               (from tweet in twitterCtx.Status
-                where tweet.Type== StatusType.Home
-                select new TwitterEntity
-                {
-
-                    Name = tweet.User.Name,
-                    Tweet = tweet.Text,
-                    UserID = tweet.User.Identifier.ID,
-                    ScreenName=tweet.User.Identifier.ScreenName,
-                    CreatedDate=tweet.CreatedAt
-
-                });
-                List<TwitterEntity> list = friendTweets.ToList<TwitterEntity>();
-
-                }
-            catch (Exception ex)
-            {
-
-            }
-
-
-
-
-
-
+            TwitterDomain domain = new TwitterDomain();
+            return domain.GetTwitter(actionState);
         }
+
+        public void AddTweets(List<TwitterEntity>tweetList, ActionState actionState)
+        {
+            TwitterDomain domain = new TwitterDomain();
+            domain.AddTweets(tweetList, actionState);
+        }
+
+        public List<UserStatistics> AllStatistics(ActionState actionState)
+        {
+            TwitterDomain domain = new TwitterDomain();
+            return domain.FindAllUserStatistics(actionState);
+        }
+
+        public List<UserStatistics> GetLastMonthStatistics(ActionState actionState)
+        {
+            TwitterDomain domain = new TwitterDomain();
+            return domain.FindAllUserStatistics(DateTime.Now.AddMonths(-1), DateTime.Now, actionState);
+        }
+
+       
     }
 }

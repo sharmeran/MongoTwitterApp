@@ -16,6 +16,8 @@ namespace MongoTwitterApp.Constants
         public const string AccessToken = "AccessToken";
         public const string OAuthToken = "OAuthToken";
         public const string ScreenName = "ScreenName";
+        public const string ActionState = "ActionState";
+        public const string TwittegGetFieldCount = "TwittegGetFieldCount";
 
     }
 }
